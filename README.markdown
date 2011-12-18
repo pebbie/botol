@@ -8,7 +8,8 @@ written in PHP
 uses external libraries such as : 
 
 * Savant3 for templating
-* RedBean for persistence
+* RedBean for persistence (optional)
+* PEAR-JSON (optional)
 
 ---
 
@@ -26,3 +27,11 @@ function hello($arg)
 }
 
 ```
+
+---
+
+conventions :
+
+* put your additional libraries/include codes (.php) in /ext directory
+* put your app codes (.php) in /mod directory
+* put your template codes (Savant3 .tpl files) in /tpl directory
