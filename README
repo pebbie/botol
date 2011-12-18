@@ -2,3 +2,7 @@
 
 web framework inspired by bottle (http://bottlepy.org)
 written in PHP
+
+uses external libraries such as : 
+- Savant3 for templating
+- RedBean for persistence
