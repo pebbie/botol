@@ -1,5 +1,5 @@
 <?
-define('DEBUG', true);
+//define('DEBUG', true);
 $time_start = microtime(1);
 session_start();
 $route = array();
@@ -63,5 +63,12 @@ foreach($route as $pattern => $handler){
 }
 if(!$found)
     require_once('404.php');
-
+if(defined('DEBUG')){
+    function convert($size) {
+       $unit=array('b','kb','mb','gb','tb','pb');
+       return @round($size/pow(1024,($i=floor(log($size,1024)))),2).' '.$unit[$i];
+    }
+    echo ' '.((microtime(1)-$time_start)*1000).' ms ';
+    echo convert(memory_get_peak_usage(true));
+}
 ?>
