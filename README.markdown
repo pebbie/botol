@@ -8,6 +8,8 @@ uses external libraries such as :
 - RedBean for persistence
 ---
 the simplest hello world in botol
+
+* create any .php file in mod/ folder containing these lines
 ```php
 <?php
 route('/hello/:name','hello');
