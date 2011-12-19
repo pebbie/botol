@@ -1,4 +1,4 @@
-<?
+<?php
 //define('DEBUG', true);
 $time_start = microtime(1);
 session_start();
@@ -6,6 +6,10 @@ $route = array();
 $routevars = array();
 foreach( glob('ext/*.php') as $module)
     require_once($module);
+
+//bootstrapping code
+if (file_exists('boot.php')) require_once('boot.php');
+
 foreach( glob('mod/*.php') as $module)
     require_once($module);
 
@@ -16,7 +20,7 @@ function route($path,$handler,$method='GET'){
     global $route, $routevars;
     $epath = escape($path);
     $n = preg_match_all('(:\w+)', $path, $matches);
-    if(intval($n)>0){
+    if(intval($n) > 0){
         foreach($matches[0] as $k=>$m){
             $epath = str_replace($m, '(\w+)', $epath);
         }
