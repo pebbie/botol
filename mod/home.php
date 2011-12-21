@@ -1,5 +1,6 @@
-<?
-route('/',function ($arg){
+<?php
+
+route('/', function ($arg){
     template('index');
 });
 
@@ -8,3 +9,7 @@ function hello($arg)
 {
     echo "hello,".$arg['name'];
 }
+
+
+
+?>

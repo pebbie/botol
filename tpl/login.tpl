@@ -5,7 +5,7 @@
     </head>
 	<body>
         <h2>Login</h2>
-        <form action="<?=$this->root?>/user/login" method="POST">
+        <form action="<?php echo $this->root; ?>/user/login" method="POST">
             <label for="uname"></label><input type="text" id="uname" name="uname"/>
             <input type="submit" />
         </form>

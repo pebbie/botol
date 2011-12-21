@@ -13,12 +13,14 @@ if (file_exists('boot.php')) require_once('boot.php');
 foreach( glob('mod/*.php') as $module)
     require_once($module);
 
+
 function escape($str){
     return str_replace('/', '\/',$str);
 }
 function route($path,$handler,$method='GET'){
     global $route, $routevars;
     $epath = escape($path);
+    
     $n = preg_match_all('(:\w+)', $path, $matches);
     if(intval($n) > 0){
         foreach($matches[0] as $k=>$m){
@@ -53,6 +55,7 @@ $found = false;
 $method = $_SERVER['REQUEST_METHOD'];
 foreach($route as $pattern => $handler){
     if(preg_match(pr($pattern), $path, $matches) && (is_callable($handler[$method]) || function_exists($handler[$method]))){
+        
         $arg = $matches;
         if(isset($routevars[$pattern]) && is_array($routevars[$pattern])){
             $arg = array();

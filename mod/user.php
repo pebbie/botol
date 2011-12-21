@@ -7,7 +7,7 @@ function login_form($arg){
 
 route('/user/login', 'do_login', 'POST');
 function do_login($arg){
-    ?>
-    Login OK
-    <?
+    echo "Login OK";
 }
+
+?>
