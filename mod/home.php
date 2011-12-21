@@ -1,9 +1,7 @@
 <?
-route('/','index');
-function index($arg)
-{
+route('/',function ($arg){
     template('index');
-}
+});
 
 route('/hello/:name','hello');
 function hello($arg)

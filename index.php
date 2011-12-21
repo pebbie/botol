@@ -29,7 +29,7 @@ function route($path,$handler,$method='GET'){
             $routevars[$epath][substr($m, 1)] = $k;
         }
     }
-    if(is_array($route[$epath])){
+    if(isset($route[$epath]) && is_array($route[$epath])){
         $route[$epath][$method] = $handler;
     }
     else{
@@ -48,13 +48,13 @@ function template($template,$vars=array()){
     $tpl->display($ftpl);
 }
 
-$path = '/'.$_GET['q'];
+$path = '/' . (isset($_GET['q']) ? $_GET['q'] : '');
 $found = false;
 $method = $_SERVER['REQUEST_METHOD'];
 foreach($route as $pattern => $handler){
-    if(preg_match(pr($pattern), $path, $matches) and function_exists($handler[$method])){
+    if(preg_match(pr($pattern), $path, $matches) && (is_callable($handler[$method]) || function_exists($handler[$method]))){
         $arg = $matches;
-        if(is_array($routevars[$pattern])){
+        if(isset($routevars[$pattern]) && is_array($routevars[$pattern])){
             $arg = array();
             foreach($routevars[$pattern] as $key=>$idx){
                 $arg[$key] = $matches[$idx+1];
@@ -75,4 +75,3 @@ if(defined('DEBUG')){
     echo ' '.((microtime(1)-$time_start)*1000).' ms ';
     echo convert(memory_get_peak_usage(true));
 }
-?>
