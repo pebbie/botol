@@ -1,8 +1,8 @@
 <?php
 
-route('/user/login', 'login');
+route('/user/login', 'login_form');
 function login($arg){
-    template('login');
+    template('login_form');
 }
 
 route('/user/login', 'do_login', 'POST');
