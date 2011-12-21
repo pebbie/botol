@@ -52,7 +52,7 @@ $path = '/' . (isset($_GET['q']) ? $_GET['q'] : '');
 $found = false;
 $method = $_SERVER['REQUEST_METHOD'];
 foreach($route as $pattern => $handler){
-    if(preg_match(pr($pattern), $path, $matches) and function_exists($handler[$method])){
+    if(preg_match(pr($pattern), $path, $matches) && (is_callable($handler[$method]) || function_exists($handler[$method]))){
         $arg = $matches;
         if(isset($routevars[$pattern]) && is_array($routevars[$pattern])){
             $arg = array();
@@ -75,4 +75,3 @@ if(defined('DEBUG')){
     echo ' '.((microtime(1)-$time_start)*1000).' ms ';
     echo convert(memory_get_peak_usage(true));
 }
-?>
